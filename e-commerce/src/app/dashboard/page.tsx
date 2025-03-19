@@ -5,10 +5,7 @@ import Navbar from "../component/Navbar";
 import BannerSlider from "../component/BannerSlider";
 
 async function getProducts() {
-    const { data, error } = await supabase.from('products').select('*');
-    if(error){
-        console.log("Not Fatch Product", error);
-    }
+    const { data} = await supabase.from('products').select('*');
     return data;
 }
 
