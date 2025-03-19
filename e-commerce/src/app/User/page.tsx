@@ -2,34 +2,42 @@
 
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabase/client";
+import { User } from "@supabase/supabase-js";
+
+interface UserDetail {
+  id: string;
+  name: string;
+  phone: string;
+  address: string;
+}
 
 export default function Profile() {
-  const [user, setUser] = useState(null);
-  const [userDetail, setUserDetail] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [userDetail, setUserDetail] = useState<UserDetail | null>(null);
 
   useEffect(() => {
     async function getUser() {
-      const { data: { user }, error } = await supabase.auth.getUser();
+      const { data, error } = await supabase.auth.getUser();
 
-      if (error) {
+      if (error || !data?.user) {
         console.error("Error fetching user:", error);
         return;
-      } else {
-        setUser(user);
       }
+      
+      setUser(data.user);
 
       const { data: details, error: detailsError } = await supabase
         .from("user_detail")
         .select("*")
-        .eq("id", user.id)
+        .eq("id", data.user.id)
         .single();
 
       if (detailsError) {
         console.error("Error fetching user details:", detailsError);
         return;
-      } else {
-        setUserDetail(details);
       }
+
+      setUserDetail(details);
     }
 
     getUser();

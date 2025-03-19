@@ -11,8 +11,8 @@ export default function ProductCard({ product }) {
         alt={product.name} 
         className="w-full h-52 object-cover mb-4 rounded-lg shadow-md"
       />
-      <h3 className="text-xl font-semibold text-white">{product.name}</h3>
-      <p className="text-gray-300 font-medium">${product.price}</p>
+      <h3 className="text-xl font-semibold text-black">{product.name}</h3>
+      <p className="text-gray-500 font-medium">${product.price}</p>
       <button
         onClick={() => addToCart(product)}
         className="mt-4 bg-gradient-to-r from-gray-700 to-gray-900 text-white px-4 py-2 rounded-lg hover:from-gray-600 hover:to-gray-800 transition duration-300 w-full shadow-md"

@@ -1,6 +1,8 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import { supabase } from "../lib/supabase/client";
+import Image from "next/image";
 
 function AddProduct() {
   const [product, setProduct] = useState({
@@ -10,18 +12,16 @@ function AddProduct() {
     image_url: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    const { data, error } = await supabase
-      .from("products")
-      .insert([product]);
-    
+
+    const { data, error } = await supabase.from("products").insert([product]);
+
     if (error) {
       console.error("Error adding product:", error.message);
     } else {
@@ -70,6 +70,13 @@ function AddProduct() {
             className="w-full p-3 rounded bg-gray-100 text-gray-900 border border-gray-300 focus:ring-2 focus:ring-blue-500 shadow-sm"
             required
           />
+          
+          {product.image_url && (
+            <div className="relative w-full h-40">
+              <Image src={product.image_url} alt="Product Preview" fill objectFit="cover" className="rounded-lg shadow-md" />
+            </div>
+          )}
+
           <button type="submit" className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 shadow-lg transition-transform transform hover:scale-105">
             Submit Product
           </button>
