@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 const images = [
-  "https://www.shutterstock.com/image-vector/ecommerce-website-banner-template-presents-260nw-2252124451.jpg",
+  "https://img.freepik.com/premium-photo/red-box-with-black-background-that-says-word-it_337384-105546.jpg?ga=GA1.1.765709634.1731075160&semt=ais_hybrid",
   "https://img.freepik.com/premium-photo/red-phone-with-red-case-bottom_337384-138848.jpg?ga=GA1.1.765709634.1731075160&semt=ais_hybrid",
   "https://img.freepik.com/free-photo/modern-man-casual-outfit-showing-shopping-bag-okay-sign-winking-camera-recommending-shop_1258-300002.jpg?ga=GA1.1.765709634.1731075160&semt=ais_hybrid",
 ];
