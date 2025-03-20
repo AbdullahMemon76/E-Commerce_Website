@@ -11,7 +11,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-blue-500 to-sky-300 p-5 shadow-md">
+    <nav className="bg-gradient-to-r from-gray-500  p-5 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="text-xl font-bold text-white">
           My Store
